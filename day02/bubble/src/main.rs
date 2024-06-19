@@ -6,14 +6,22 @@ fn main() {
         numbers[index] = rand::thread_rng().gen_range(1..=100);
     }
     println!("生成的随机数为：{:?}", numbers);
+    // 选择排序
+    let result = select_sort(numbers);
+    println!("排序后随机数为：{:?}", result);
+}
+fn select_sort(mut numbers: [u32;10]) -> [u32;10]{
+    let mut min_index = 0;
     for i in 0..numbers.len() {
-        for j in 0..numbers.len() - i -1{
-            let v = numbers[j];
-            let v2 = numbers[j+1];
-            if v > v2 {
-                numbers.swap(j, j+1);
+        min_index = i;
+        for j in i..numbers.len() {
+            if numbers[j] < numbers[min_index]  {
+                min_index = j;
             }
         }
+        if min_index != i {
+            numbers.swap(min_index, i)
+        }
     }
-    println!("排序后随机数为：{:?}", numbers);
+    return numbers
 }
