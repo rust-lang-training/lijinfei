@@ -7,21 +7,35 @@ fn main() {
     }
     println!("生成的随机数为：{:?}", numbers);
     // 选择排序
-    let result = select_sort(numbers);
+    let result = insert_sort(numbers);
     println!("排序后随机数为：{:?}", result);
 }
-fn select_sort(mut numbers: [u32;10]) -> [u32;10]{
-    let mut min_index = 0;
-    for i in 0..numbers.len() {
-        min_index = i;
-        for j in i..numbers.len() {
-            if numbers[j] < numbers[min_index]  {
-                min_index = j;
-            }
+// fn select_sort(mut numbers: [u32;10]) -> [u32;10]{
+//     let mut min_index = 0;
+//     for i in 0..numbers.len() {
+//         min_index = i;
+//         for j in i..numbers.len() {
+//             if numbers[j] < numbers[min_index]  {
+//                 min_index = j;
+//             }
+//         }
+//         if min_index != i {
+//             numbers.swap(min_index, i)
+//         }
+//     }
+//     return numbers
+// }
+
+fn insert_sort(mut numbers: [u32; 10]) -> [u32;10] {
+    let mut temp = 0u32;
+    for i in 1..numbers.len() {
+        let mut j = i;
+        temp = numbers[i];
+        while j > 0 && numbers[j-1] > temp {
+            numbers[j] = numbers[j-1];
+            j-=1;
         }
-        if min_index != i {
-            numbers.swap(min_index, i)
-        }
+        numbers[j] = temp;
     }
-    return numbers
+    numbers
 }
