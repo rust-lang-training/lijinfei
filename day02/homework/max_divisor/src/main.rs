@@ -20,6 +20,10 @@ fn main() {
     let result = get_common_divisor(input_arr);
     println!("{} 和 {} 的最大公约数为 {}", input_arr[0], input_arr[1], result);
 }
+// 输入0
+// 0 0 => 0
+// 0 a => a
+// 边界条件处理
 fn  get_common_divisor(input_arr: [u32;2]) -> u32 {
     if input_arr[0] == input_arr[1] {
         return input_arr[0]
@@ -35,7 +39,7 @@ fn get_divisor(max: u32, min: u32) -> u32{
     loop {
         let remainder =  new_max % new_min;
         if remainder == 0 {
-         break new_min
+            break new_min
         } else {
             new_max = new_min;
             new_min = remainder
