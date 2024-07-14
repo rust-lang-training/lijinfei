@@ -7,8 +7,12 @@ pub fn test() {
 pub fn copy_file<P: AsRef<Path>>(copy_path: P, target_path: P) -> io::Result<()> {
   let file = File::open(copy_path)?;
   let mut reader = BufReader::new(file);
-  let mut target_file = File::create(target_path)?;
+
+
+
+  let target_file = File::create(target_path)?;
   let mut write = BufWriter::new(target_file);
+  
   copy(&mut reader, &mut write)?;
   Ok(())
 }
