@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>markdown</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+    }
+    textarea {
+      width: 100%;
+      height: 300px;
+    }
+  </style>
+</head>
+<body>
+  <textarea></textarea>
+  <div id=output></div>
+  <script type="module">
+    import init, { transform_from_md } from "./pkg/homework.js"
+    (async function(){
+      await init();
+      const area = document.querySelector("textarea")
+      area.oninput = function() {
+        if(area.value) {
+          // console.log(transform_from_md(area.value))
+          const html = transform_from_md(area.value)
+          output.innerHTML = html
+        }
+        // console.log(area.value)
+      }
+    })()
+
+  </script>
+</body>
+</html>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <ul>
+    <li>手机号：<input class="mobile" type="text"></li>
+    <li>密码：<input class="password" type="text"></li>
+    <li><button class="btn">加密</button></li>
+  </ul>
+  <script type="module">
+    import init, { greet, run, encrypt, decrypt } from './pkg/hello_wasm.js'
+    (async function(){
+      const wasm = await init();
+      // console.log(wasm);
+      // run();
+      // console.log(greet("test"));
+      const mobile = document.querySelector(".mobile")
+      const password = document.querySelector(".password")
+      const btn = document.querySelector(".btn")
+      btn.onclick = function() {
+        // console.log(mobile.value, password.value)
+        if(mobile.value && password.value) {
+          const mobileEncrypt = encrypt(mobile.value)
+          const passwordEncrypt = encrypt(password.value)
+          console.log(`mobile加密结果为${mobileEncrypt}
+password加密结果为:${passwordEncrypt}`)
+          console.log(`mobile解密为${decrypt(mobileEncrypt)}
+password解密为${decrypt(passwordEncrypt)}`)
+        }
+      }
+    })()
+  </script>
+</body>
+</html>
