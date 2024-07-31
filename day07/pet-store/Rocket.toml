@@ -1,0 +1,2 @@
+[default.databases.pet_store]
+url = "mongodb://127.0.0.1:27017/pet_store"
